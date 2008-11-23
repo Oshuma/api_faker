@@ -1,0 +1,12 @@
+.DS_Store
+config/database.yml
+log/*
+tmp/*
+schema/schema.rb
+schema/*_structure.sql
+schema/*.sqlite3
+schema/*.sqlite
+schema/*.db
+*.sqlite
+*.sqlite3
+*.db
