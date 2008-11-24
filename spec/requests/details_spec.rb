@@ -3,7 +3,7 @@ require File.join(File.dirname(__FILE__), '..', 'spec_helper.rb')
 given "a detail exists" do
   Detail.all.destroy!
   request(resource(:details), :method => "POST",
-    :params => { :detail => { :id => nil }})
+    :params => { :detail => { :id => nil, :name => 'API', :content => 'test data' }})
 end
 
 describe "resource(:details)" do
@@ -18,8 +18,7 @@ describe "resource(:details)" do
     end
 
     it "contains a list of details" do
-      pending
-      @response.should have_xpath("//ul")
+      @response.should have_xpath("//div/code")
     end
 
   end
@@ -30,8 +29,7 @@ describe "resource(:details)" do
     end
 
     it "has a list of details" do
-      pending
-      @response.should have_xpath("//ul/li")
+      @response.should have_xpath("//div/code")
     end
   end
 
@@ -39,7 +37,7 @@ describe "resource(:details)" do
     before(:each) do
       Detail.all.destroy!
       @response = request(resource(:details), :method => "POST",
-        :params => { :detail => { :id => nil }})
+        :params => { :detail => { :id => nil, :name => 'API', :content => 'test data' }})
     end
 
     it "redirects to resource(:details)" do
@@ -101,7 +99,7 @@ describe "resource(@detail)", :given => "a detail exists" do
         :params => { :detail => {:id => @detail.id} })
     end
 
-    it "redirect to the article show action" do
+    it "redirect to the detail show action" do
       @response.should redirect_to(resource(@detail))
     end
   end

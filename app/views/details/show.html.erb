@@ -1,4 +1,10 @@
-<h1>Details controller, show action</h1>
+<h1><%=h @detail.name %></h1>
 
-<p>Edit this file in <tt>app/views/details/show.html.erb</tt></p>
-<p>For more information and examples of CRUD views read <a href="http://wiki.merbivore.com/howto/crud_view_example_with_merb_using_erb"> this wiki page</a>
+<%= link_to 'API List', resource(:details) %> |
+<%= link_to 'Edit', resource(@detail, :edit) %>
+<%#= link_to 'Delete', resource(@detail, :delete), :class => 'delete_link' %>
+<%= delete_button(@detail, nil, :class => 'delete_link') %>
+
+<div>
+  <%=h @detail.content %>
+</div>

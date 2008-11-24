@@ -28,9 +28,9 @@ class Details < Application
   def create(detail)
     @detail = Detail.new(detail)
     if @detail.save
-      redirect resource(@detail), :message => {:notice => "Detail was successfully created"}
+      redirect resource(@detail), :message => {:notice => "'#{@detail.name}' details saved."}
     else
-      message[:error] = "Detail failed to be created"
+      message[:error] = "API details could not be saved."
       render :new
     end
   end
@@ -39,7 +39,7 @@ class Details < Application
     @detail = Detail.get(id)
     raise NotFound unless @detail
     if @detail.update_attributes(detail)
-       redirect resource(@detail)
+       redirect resource(@detail), :message => {:notice => "'#{@detail.name}' details updated."}
     else
       display @detail, :edit
     end
@@ -49,7 +49,7 @@ class Details < Application
     @detail = Detail.get(id)
     raise NotFound unless @detail
     if @detail.destroy
-      redirect resource(:details)
+      redirect resource(:details), :message => {:notice => "'#{@detail.name}' was deleted."}
     else
       raise InternalServerError
     end
