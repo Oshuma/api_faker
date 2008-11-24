@@ -1,12 +1,10 @@
-<h1>APIs</h1>
+<h1>Test APIs</h1>
 
 <%= link_to 'New API', resource(:details, :new) %>
 
 <% @details.each do |api| %>
   <div>
     <h3><%= link_to api.name, resource(api) %></h3>
-    <code>
-      <%=h api.content %>
-    </code>
+    <code><pre><%=h api.content %></pre></code>
   </div>
 <% end %>

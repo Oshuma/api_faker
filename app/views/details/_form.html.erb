@@ -4,5 +4,6 @@
     :action => (request.params['action'] == 'edit' ? resource(@detail) : resource(:details))) do %>
   <p><%= text_field :name, :label => 'Name: ' %></p>
   <p><%= text_area :content, :rows => '20', :cols => '60' %></p>
+  <p><%= select :content_type, :collection => @detail.content_types %></p>
   <p><%= submit 'Save' %> - <%= link_to 'Cancel', resource(:details) %></p>
 <% end =%>

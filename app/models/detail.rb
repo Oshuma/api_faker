@@ -9,6 +9,11 @@ class Detail
   property :content,      Text,   :nullable => false
   property :content_type, String, :nullable => false
 
+  # A list of valid content types.
+  def content_types
+    %w{ json yaml xml }
+  end
+
   def to_json
     raise WrongContentType unless content_type == 'json'
     content

@@ -1,10 +1,12 @@
 <h1><%=h @detail.name %></h1>
 
-<%= link_to 'API List', resource(:details) %> |
-<%= link_to 'Edit', resource(@detail, :edit) %>
-<%#= link_to 'Delete', resource(@detail, :delete), :class => 'delete_link' %>
-<%= delete_button(@detail, nil, :class => 'delete_link') %>
+<div>
+  <%= link_to 'API List', resource(:details) %> |
+  <%= link_to 'Edit', resource(@detail, :edit) %>
+  <%#= link_to 'Delete', resource(@detail, :delete), :class => 'delete_link' %>
+  <%= delete_button(@detail, nil, :class => 'delete_link') %>
+</div>
 
 <div>
-  <%=h @detail.content %>
+  <pre><%=h @detail.content %></pre>
 </div>
