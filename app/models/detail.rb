@@ -1,9 +1,27 @@
 class Detail
+  class WrongContentType < Exception; end
+
   include DataMapper::Resource
 
   property :id, Serial
 
-  property :name,    String, :nullable => false
-  property :content, Text,   :nullable => false
+  property :name,         String, :nullable => false
+  property :content,      Text,   :nullable => false
+  property :content_type, String, :nullable => false
+
+  def to_json
+    raise WrongContentType unless content_type == 'json'
+    content
+  end
+
+  def to_xml
+    raise WrongContentType unless content_type == 'xml'
+    content
+  end
+
+  def to_yaml
+    raise WrongContentType unless content_type == 'yaml'
+    content
+  end
 
 end

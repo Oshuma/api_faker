@@ -1,5 +1,5 @@
 class Details < Application
-  # provides :xml, :yaml, :js
+  provides :xml, :yaml, :json
 
   def index
     @details = Detail.all

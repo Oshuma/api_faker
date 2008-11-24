@@ -3,7 +3,8 @@ require File.join(File.dirname(__FILE__), '..', 'spec_helper.rb')
 given "a detail exists" do
   Detail.all.destroy!
   request(resource(:details), :method => "POST",
-    :params => { :detail => { :id => nil, :name => 'API', :content => 'test data' }})
+    :params => { :detail => { :id => nil, :name => 'API',
+                 :content => '<test><data /></test>', :content_type => 'xml' }})
 end
 
 describe "resource(:details)" do
@@ -37,7 +38,8 @@ describe "resource(:details)" do
     before(:each) do
       Detail.all.destroy!
       @response = request(resource(:details), :method => "POST",
-        :params => { :detail => { :id => nil, :name => 'API', :content => 'test data' }})
+        :params => { :detail => { :id => nil, :name => 'API',
+                     :content => '<test><data /></test>', :content_type => 'xml' }})
     end
 
     it "redirects to resource(:details)" do
@@ -106,7 +108,8 @@ describe "resource(@detail)", :given => "a detail exists" do
     before(:each) do
       @detail = Detail.first
       @response = request(resource(@detail), :method => "PUT",
-        :params => { :detail => {:id => @detail.id, :name => 'API', :content => 'updated data'} })
+        :params => { :detail => {:id => @detail.id, :name => 'API',
+                     :content => '<updated><data /></updated>', :content_type => 'xml'} })
     end
 
     it "redirect to the detail show action" do
