@@ -43,7 +43,18 @@ describe "resource(:details)" do
     it "redirects to resource(:details)" do
       @response.should redirect_to(resource(Detail.first), :message => {:notice => "detail was successfully created"})
     end
+  end
 
+  describe "an unsuccessful POST" do
+    before(:each) do
+      Detail.all.destroy!
+      @response = request(resource(:details), :method => "POST",
+        :params => { :detail => { :id => nil }})
+    end
+
+    it "should return a 200 status" do
+      @response.status.should == 200
+    end
   end
 end
 
@@ -56,8 +67,7 @@ describe "resource(@detail)" do
      it "should redirect to the index action" do
        @response.should redirect_to(resource(:details))
      end
-
-   end
+  end
 end
 
 describe "resource(:details, :new)" do
@@ -96,11 +106,18 @@ describe "resource(@detail)", :given => "a detail exists" do
     before(:each) do
       @detail = Detail.first
       @response = request(resource(@detail), :method => "PUT",
-        :params => { :detail => {:id => @detail.id} })
+        :params => { :detail => {:id => @detail.id, :name => 'API', :content => 'updated data'} })
     end
 
     it "redirect to the detail show action" do
       @response.should redirect_to(resource(@detail))
+    end
+
+    it "should return a 200 status" do
+      @detail = Detail.first
+      @response = request(resource(@detail), :method => "PUT",
+        :params => { :detail => {:id => @detail.id, :name => nil, :content => nil }})
+      @response.status.should == 200
     end
   end
 
