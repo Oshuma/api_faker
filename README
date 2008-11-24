@@ -1,0 +1,41 @@
+API Faker
+---------
+
+This app was born from my need to test web API responses without having to actually send
+a request through the tubes.  Just create a new Detail, select the content type, and
+give it some guts.  You'll then be able to RESTfully test the response and not have to
+worry about some lame API limit (*ahem* looks at Twitter).
+
+Currently supports JSON, XML and YAML.
+
+
+Example
+-------
+
+$ curl http://localhost:4000/details/666.json
+{
+  "animals": {
+    "dog": [
+      {
+        "id": 666,
+        "name": "Cerberus",
+        "breed": "hellbeast"
+      }
+    ],
+    "cat": {
+      "name": "Kamichu"
+    }
+  }
+}
+
+$ curl http://localhost:4000/details/420.xml
+<?xml version="1.0" encoding="UTF-8"?>
+<books>
+  <book awesome="true">
+    <title>The Ruby Programming Language</title>
+  </book>
+  <book awesome="false">
+    <title>PHP For Little Girls</title>
+  </book>
+</books>
+
