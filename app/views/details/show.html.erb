@@ -3,6 +3,10 @@
 <%= partial 'detail', :detail => @detail %>
 
 <p>
-  <%#= link_to 'Delete', resource(@detail, :delete), :class => 'delete_link' %>
+  Fetch this data:
+  <pre><code>$ curl <%= absolute_url(:detail, @detail, :format => @detail.content_type) %></code></pre>
+</p>
+
+<p>
   <%= delete_button(@detail, nil, :class => 'delete-link') %>
 </p>
