@@ -58,7 +58,7 @@ h3 {
   font-size: 15px;
   text-align: left;
   font-weight: 300;
-  padding: 5px;
+  padding: 5px 0;
   margin-top: 5px;
 }
 
@@ -74,10 +74,19 @@ h3 {
 }
 
 #main-container {
-  margin: 5px 5px 5px 130px;
-  padding: 15px;
+  margin: 0 5px 5px 130px;
+  padding: 0 15px;
   border-left: 1px solid silver;
   min-height: 400px;
+}
+#main-container pre {
+	background-color: #eee;
+	margin: 0 5px;
+	padding: 10px;
+}
+#main-container label {
+	font-size: 175%;
+	margin-right: 10px;
 }
 p {
   color: #000;
@@ -91,9 +100,9 @@ a {
   text-decoration: none;
 }
 a:hover {
-  color: #4d9b12;
-  background-color: #fff;
-  text-decoration: underline;
+  color: #fff;
+  background-color: #4d9b12;
+  text-decoration: none;
 }
 #footer-container {
   clear: both;
@@ -118,17 +127,27 @@ a:hover {
   margin-left: 3.0em;
 }
 #menu ul {
-	font-size: 200%;
+	font-size: 175%;
 	list-style-type: none;
 	margin: 5px;
 	position: absolute;
+	text-align: center;
 }
 #menu li {
+	margin: 0 0 0 5px;
+	padding: 0;
 }
 #menu a {
+	display: block;
+	padding: 5px 1em;
 }
 #menu a:hover {
 	background-color: #4d9b12;
 	color: #fff;
 	text-decoration: none;
+}
+
+.detail_form {
+	margin: 10px;
+	text-align: center;
 }

@@ -1,10 +1,5 @@
 <% title 'totally fake' %>
 
-<%= link_to 'New API', resource(:details, :new) %>
-
-<% @details.each do |api| %>
-  <div>
-    <h3><%= link_to api.name, resource(api) %></h3>
-    <code><pre><%=h api.content %></pre></code>
-  </div>
+<% @details.each do |detail| %>
+  <%= partial 'detail', :detail => detail %>
 <% end %>

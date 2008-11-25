@@ -19,7 +19,7 @@ describe "resource(:details)" do
     end
 
     it "contains a list of details" do
-      @response.should have_xpath("//div/code")
+      @response.should have_xpath("//pre/code")
     end
 
   end
@@ -30,7 +30,7 @@ describe "resource(:details)" do
     end
 
     it "has a list of details" do
-      @response.should have_xpath("//div/code")
+      @response.should have_xpath("//pre/code")
     end
   end
 

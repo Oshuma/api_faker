@@ -15,7 +15,7 @@
       </div>
 
       <div id="left-container">
-        <%# TODO: Move this to a partial. %>
+        <%# TODO: Move the messages to a partial. %>
         <%=h message[:notice] %>
         <%= partial 'layout/menu' %>
       </div>
@@ -27,7 +27,10 @@
       <div id="footer-container">
         <hr />
         <div class="left"></div>
-        <div class="right">&copy; WTFPL <a href="http://corrupt.save-state.net/">Dale Campbell</a></div>
+        <div class="right">
+          &copy; WTFPL <a href="http://corrupt.save-state.net/">Dale Campbell</a>
+          - Powered by <a href="http://merbivore.com/">Merb</a>
+        </div>
         <p>&nbsp;</p>
       </div>
     </div>
