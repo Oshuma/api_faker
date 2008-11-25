@@ -15,12 +15,11 @@
       </div>
 
       <div id="left-container">
-        <%# TODO: Move the messages to a partial. %>
-        <%=h message[:notice] %>
         <%= partial 'layout/menu' %>
       </div>
 
       <div id="main-container">
+        <%= partial 'layout/messages' %>
         <%= catch_content :for_layout %>
       </div>
 

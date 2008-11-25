@@ -1,0 +1,13 @@
+<% if error_message? %>
+  <div class="message" id="error-message">
+    <%=h message[:error] %>
+    <a href="" class="message-close" rel="#error-message">Close</a>
+  </div>
+<% end %>
+
+<% if notice_message? %>
+  <div class="message" id="notice-message">
+    <%=h message[:notice] %>
+    <a href="" class="message-close" rel="#notice-message">Close</a>
+  </div>
+<% end %>

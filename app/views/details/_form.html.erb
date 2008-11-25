@@ -2,7 +2,7 @@
 
 <%= form_for(@detail,
     :action => (request.params['action'] == 'edit' ? resource(@detail) : resource(:details)),
-    :class => 'detail_form') do %>
+    :class => 'detail-form') do %>
   <p><%= text_field :name, :label => 'Name:', :size => '50' %></p>
   <p><%= text_area :content, :rows => '30', :cols => '80' %></p>
   <p><%= select :content_type, :label => 'Content Type:', :collection => @detail.content_types %></p>

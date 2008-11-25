@@ -147,7 +147,21 @@ a:hover {
 	text-decoration: none;
 }
 
-.detail_form {
+.message-close {
+	background-color: #ff9;
+	float: right;
+	position: absolute;
+	right: 190px;
+}
+.message {
+	background-color: #ff9;
+	margin: 5px 50px;
+	padding: 5px;
+}
+#notice-message { border: 4px solid #4d9b12; }
+#error-message  { border: 4px solid #f53; }
+
+.detail-form {
 	margin: 10px;
 	text-align: center;
 }
