@@ -124,7 +124,7 @@ a:hover {
   background-color: #fff;
 }
 #main-container ul {
-  margin-left: 3.0em;
+  margin-left: 2.0em;
 }
 #menu ul {
 	font-size: 175%;
@@ -147,6 +147,11 @@ a:hover {
 	text-decoration: none;
 }
 
+.detail-form {
+	margin: 10px;
+	text-align: center;
+}
+
 .message-close {
 	background-color: #ff9;
 	float: right;
@@ -161,7 +166,7 @@ a:hover {
 #notice-message { border: 4px solid #4d9b12; }
 #error-message  { border: 4px solid #f53; }
 
-.detail-form {
+/* merb form error messages */
+div.error {
 	margin: 10px;
-	text-align: center;
 }
