@@ -1,7 +1,7 @@
 <h1><%=h @detail.name %></h1>
 
 <div>
-  <%= link_to 'API List', resource(:details) %> |
+  <%= link_to 'API List', url(:root) %> |
   <%= link_to 'Edit', resource(@detail, :edit) %>
   <%#= link_to 'Delete', resource(@detail, :delete), :class => 'delete_link' %>
   <%= delete_button(@detail, nil, :class => 'delete_link') %>
