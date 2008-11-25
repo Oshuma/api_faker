@@ -8,8 +8,7 @@ $(document).ready(function() {
 
 	// Close link on the message boxes.
 	$('.message-close').click(function(){
-		var box = $(this).attr("rel");
-		$(box).fadeOut();
+		$(this.rel).fadeOut();
 		return false;
 	});
 });
