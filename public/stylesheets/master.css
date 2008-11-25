@@ -74,7 +74,7 @@ h3 {
 }
 
 #main-container {
-  margin: 5px 5px 5px 260px;
+  margin: 5px 5px 5px 130px;
   padding: 15px;
   border-left: 1px solid silver;
   min-height: 400px;
@@ -116,4 +116,19 @@ a:hover {
 }
 #main-container ul {
   margin-left: 3.0em;
+}
+#menu ul {
+	font-size: 200%;
+	list-style-type: none;
+	margin: 5px;
+	position: absolute;
+}
+#menu li {
+}
+#menu a {
+}
+#menu a:hover {
+	background-color: #4d9b12;
+	color: #fff;
+	text-decoration: none;
 }

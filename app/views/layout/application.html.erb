@@ -1,14 +1,35 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en-us" lang="en-us">
   <head>
-    <title>Fresh Merb App</title>
+    <title>API Faker / <%= @page_title || request.params['action'].capitalize %></title>
     <meta http-equiv="content-type" content="text/html; charset=utf-8" />
     <%= js_include_tag :jquery, :application, :bundle => true %>
     <%= css_include_tag :master, :bundle => true %>
   </head>
   <body>
-    <%# TODO: Write a helper to display messages. %>
-    <%=h message[:notice] %>
-    <%= catch_content :for_layout %>
+    <div id="container">
+      <div id="header-container">
+        <img src="/images/merb.jpg" />
+        <h2><%= @page_title || request.params['action'].capitalize %></h2>
+        <hr />
+      </div>
+
+      <div id="left-container">
+        <%# TODO: Move this to a partial. %>
+        <%=h message[:notice] %>
+        <%= partial 'layout/menu' %>
+      </div>
+
+      <div id="main-container">
+        <%= catch_content :for_layout %>
+      </div>
+
+      <div id="footer-container">
+        <hr />
+        <div class="left"></div>
+        <div class="right">&copy; WTFPL <a href="http://corrupt.save-state.net/">Dale Campbell</a></div>
+        <p>&nbsp;</p>
+      </div>
+    </div>
   </body>
 </html>
