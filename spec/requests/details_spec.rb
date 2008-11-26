@@ -125,3 +125,16 @@ describe "resource(@detail)", :given => "a detail exists" do
   end
 
 end
+
+describe "create detail from URL" do
+  before(:each) do
+    Detail.all.destroy!
+    @params = { :id => nil, :name => 'New API', :from_url => 'http://www.example.org/some/api.xml' }
+  end
+
+  it 'should be successful' do
+    @response = request(resource(:details), :method => "POST",
+      :params => { :detail => @params })
+    @response.should redirect_to(resource(Detail.first))
+  end
+end

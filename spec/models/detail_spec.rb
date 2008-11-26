@@ -58,6 +58,21 @@ describe Detail do
     end.should raise_error(Detail::WrongContentType)
   end
 
+  it 'should fetch the content from a remote URL' do
+    url  = 'http://www.example.org/some/api.xml'
+    data = '<data><to><test /></to></data>'
+
+    # mock up the HTTP response
+    http_resp = mock('HTTP response')
+    http_resp.should_receive(:content_type).and_return('application/xml')
+    http_resp.should_receive(:body).and_return(data)
+    Net::HTTP.should_receive(:get_response).with(URI.parse(url)).and_return(http_resp)
+
+    detail = Detail.create_from_url('New API', url)
+    detail.save.should be_true
+    detail.from_url.should_not be_nil
+  end
+
   private
 
   def create_detail(options = {})

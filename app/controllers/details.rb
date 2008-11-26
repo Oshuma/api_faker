@@ -26,7 +26,12 @@ class Details < Application
   end
 
   def create(detail)
-    @detail = Detail.new(detail)
+    if detail['from_url']
+      @detail = Detail.create_from_url(detail['name'], detail['from_url'])
+    else
+      @detail = Detail.new(detail)
+    end
+
     if @detail.save
       redirect resource(@detail), :message => {:notice => "'#{@detail.name}' saved."}
     else
