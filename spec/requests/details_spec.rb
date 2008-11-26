@@ -130,6 +130,8 @@ describe "create detail from URL" do
   before(:each) do
     Detail.all.destroy!
     @params = { :id => nil, :name => 'New API', :from_url => 'http://www.example.org/some/api.xml' }
+    @fake_response = {:content => '<foo/>', :content_type => 'xml'}
+    Detail.should_receive(:fetch_data).with(@params[:from_url]).and_return(@fake_response)
   end
 
   it 'should be successful' do

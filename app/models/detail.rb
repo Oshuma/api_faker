@@ -32,12 +32,36 @@ class Detail
     content
   end
 
+  # Creates a new Detail from the given +url+ response.
   def self.create_from_url(name, url)
-    response = Net::HTTP.get_response(::URI.parse(url))
-    content = response.body
-    content_type = response.content_type.split('/').last
+    response     = fetch_data(url)
+    content      = response[:content]
+    content_type = response[:content_type]
     new(:name => name, :from_url => url,
         :content => content, :content_type => content_type)
+  end
+
+  private
+
+  # Fetch the data from the remote +url+.
+  def self.fetch_data(url)
+    response = Net::HTTP.get_response(::URI.parse(url))
+    data = {}
+    data[:content] = response.body
+    data[:content_type] = parse_content_type(response.content_type)
+    data
+  end
+
+  # Returns the 'basename' (so to speak) of the content +type+.
+  def self.parse_content_type(type)
+    case type
+    when 'application/json'
+      'json'
+    when 'application/xml'
+      'xml'
+    when 'application/x-yaml'
+      'yaml'
+    end
   end
 
 end
