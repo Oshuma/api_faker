@@ -62,6 +62,7 @@ describe Detail do
   it 'should fetch the content from a remote URL' do
     @detail = create_from_url
     @detail.from_url.should_not be_nil
+    @detail.cached_at.should_not be_nil
     @detail.new_record?.should be_false
   end
 
@@ -74,6 +75,7 @@ describe Detail do
 
     @detail.update_cached_content!
     @detail.content.should eql(updated_data)
+    @detail.cached_at.should_not be_nil
   end
 
   it "should return false if there's no stored remote URL" do

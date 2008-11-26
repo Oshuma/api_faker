@@ -17,5 +17,16 @@ module Merb
     def notice_message?
       true if message[:notice]
     end
+
+    # Returns a nice <abbr> tag with the given +time+.
+    def time_abbr(time = Time.now, options = {:date_only => false})
+      format = "%B %d, %Y"
+      format += " - %I:%M:%S %p" unless options[:date_only]
+      tag  = '<abbr '
+      tag += "title='#{time.httpdate}'>"
+      tag += time.strftime(format)
+      tag += '</abbr>'
+      return tag
+    end
   end
 end

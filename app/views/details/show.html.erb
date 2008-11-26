@@ -8,9 +8,14 @@
 </p>
 
 <% if @detail.from_url %>
+  <br />
   <p>
-    This API was pulled from a remote source,
+    This response is cached from a remote source,
     <%= link_to 'Update It', resource(@detail, :update_cached) %>.
+  </p>
+  <p>
+    Data was last fetched on <%= time_abbr(@detail.cached_at) %>.<br />
+    Remote URL: <code><%=h @detail.from_url %></code>
   </p>
 <% end %>
 

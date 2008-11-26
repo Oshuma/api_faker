@@ -10,14 +10,16 @@ class Detail
   property :name,         String, :nullable => false
   property :content,      Text,   :nullable => false
   property :content_type, String, :nullable => false
+
   property :from_url,     String, :nullable => true
+  property :cached_at,    Time,   :nullable => true, :default => Time.now
 
   # Creates a new Detail from the given +url+ response.
   def self.create_from_url(name, url)
     response     = fetch_data(url)
     content      = response[:content]
     content_type = response[:content_type]
-    new(:name => name, :from_url => url,
+    new(:name => name, :from_url => url, :cached_at => Time.now,
         :content => content, :content_type => content_type)
   end
 
@@ -41,12 +43,11 @@ class Detail
     content
   end
 
-  # TODO: Add a 'fetched_at' (or similarly named) timestamp.
   # Returns false if there's no +from_url+ attribute set.
   def update_cached_content!
     return false unless from_url
     response = self.class.fetch_data(from_url)
-    self.update_attributes(:content => response[:content])
+    self.update_attributes(:content => response[:content], :cached_at => Time.now)
   end
 
   private
