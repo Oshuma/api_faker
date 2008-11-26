@@ -42,6 +42,7 @@ class Detail
   end
 
   # TODO: Add a 'fetched_at' (or similarly named) timestamp.
+  # Returns false if there's no +from_url+ attribute set.
   def update_cached_content!
     return false unless from_url
     response = self.class.fetch_data(from_url)
@@ -51,6 +52,7 @@ class Detail
   private
 
   # Fetch the data from the remote +url+.
+  # Returns a hash containing the +content+ and +content_type+.
   def self.fetch_data(url)
     response = Net::HTTP.get_response(::URI.parse(url))
     data = {}
