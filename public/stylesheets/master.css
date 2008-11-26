@@ -147,7 +147,7 @@ a:hover {
 	text-decoration: none;
 }
 
-.detail-form {
+#detail-form {
 	margin: 10px;
 	text-align: center;
 }
@@ -169,4 +169,8 @@ a:hover {
 /* merb form error messages */
 div.error {
 	margin: 10px;
+}
+
+#content-choice {
+	text-align: center;
 }

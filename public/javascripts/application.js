@@ -11,4 +11,20 @@ $(document).ready(function() {
 		$(this.rel).fadeOut();
 		return false;
 	});
+
+	// Toggles the form for creating a Detail manually or from a URL.
+	$('.content-option-link').click(function() {
+		if ($(this).attr("id") == "from-url-link") {
+			$("#manual-content-link").show();
+			$("#manual-content-container").fadeOut();
+			$("#content-type-container").fadeOut();
+		} else {
+			$("#from-url-link").show();
+			$("#from-url-container").fadeOut();
+			$("#content-type-container").fadeIn();
+		}
+		$(this).hide();
+		$(this.rel).fadeIn();
+		return false;
+	});
 });

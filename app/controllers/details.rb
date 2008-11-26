@@ -26,10 +26,10 @@ class Details < Application
   end
 
   def create(detail)
-    if detail['from_url']
-      @detail = Detail.create_from_url(detail['name'], detail['from_url'])
-    else
+    if detail['from_url'].empty?
       @detail = Detail.new(detail)
+    else
+      @detail = Detail.create_from_url(detail['name'], detail['from_url'])
     end
 
     if @detail.save

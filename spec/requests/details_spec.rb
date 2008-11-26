@@ -3,7 +3,7 @@ require File.join(File.dirname(__FILE__), '..', 'spec_helper.rb')
 given "a detail exists" do
   Detail.all.destroy!
   request(resource(:details), :method => "POST",
-    :params => { :detail => { :id => nil, :name => 'API',
+    :params => { :detail => { :id => nil, :name => 'API', :from_url => nil,
                  :content => '<test><data /></test>', :content_type => 'xml' }})
 end
 
@@ -38,7 +38,7 @@ describe "resource(:details)" do
     before(:each) do
       Detail.all.destroy!
       @response = request(resource(:details), :method => "POST",
-        :params => { :detail => { :id => nil, :name => 'API',
+        :params => { :detail => { :id => nil, :name => 'API', :from_url => nil,
                      :content => '<test><data /></test>', :content_type => 'xml' }})
     end
 
@@ -51,7 +51,7 @@ describe "resource(:details)" do
     before(:each) do
       Detail.all.destroy!
       @response = request(resource(:details), :method => "POST",
-        :params => { :detail => { :id => nil }})
+        :params => { :detail => { :id => nil, :from_url => nil }})
     end
 
     it "should return a 200 status" do
@@ -108,7 +108,7 @@ describe "resource(@detail)", :given => "a detail exists" do
     before(:each) do
       @detail = Detail.first
       @response = request(resource(@detail), :method => "PUT",
-        :params => { :detail => {:id => @detail.id, :name => 'API',
+        :params => { :detail => {:id => @detail.id, :name => 'API', :from_url => nil,
                      :content => '<updated><data /></updated>', :content_type => 'xml'} })
     end
 
