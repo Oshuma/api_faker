@@ -12,6 +12,15 @@ class Detail
   property :content_type, String, :nullable => false
   property :from_url,     String, :nullable => true
 
+  # Creates a new Detail from the given +url+ response.
+  def self.create_from_url(name, url)
+    response     = fetch_data(url)
+    content      = response[:content]
+    content_type = response[:content_type]
+    new(:name => name, :from_url => url,
+        :content => content, :content_type => content_type)
+  end
+
   # A list of valid content types.
   def content_types
     %w{ json yaml xml }
@@ -32,13 +41,10 @@ class Detail
     content
   end
 
-  # Creates a new Detail from the given +url+ response.
-  def self.create_from_url(name, url)
-    response     = fetch_data(url)
-    content      = response[:content]
-    content_type = response[:content_type]
-    new(:name => name, :from_url => url,
-        :content => content, :content_type => content_type)
+  # TODO: Add a 'fetched_at' (or similarly named) timestamp.
+  def update_cached_content!
+    response = self.class.fetch_data(from_url)
+    self.update_attributes(:content => response[:content])
   end
 
   private

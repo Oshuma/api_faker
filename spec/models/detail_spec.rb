@@ -35,6 +35,7 @@ describe Detail do
   it 'should return YAML' do
     @detail = create_detail(:content_type => 'yaml',
                             :content => '--- :test')
+    @detail.to_yaml.should_not be_empty
   end
 
   it 'should raise WrongContentType for XML' do
@@ -59,18 +60,20 @@ describe Detail do
   end
 
   it 'should fetch the content from a remote URL' do
-    url  = 'http://www.example.org/some/api.xml'
-    data = '<data><to><test /></to></data>'
+    @detail = create_from_url
+    @detail.from_url.should_not be_nil
+    @detail.new_record?.should be_false
+  end
 
-    # mock up the HTTP response
-    http_resp = mock('HTTP response')
-    http_resp.should_receive(:content_type).and_return('application/xml')
-    http_resp.should_receive(:body).and_return(data)
-    Net::HTTP.should_receive(:get_response).with(URI.parse(url)).and_return(http_resp)
+  it 'should update the content from the stored remote URL' do
+    updated_data = '<updated><data/></updated>'
+    @detail = create_from_url
 
-    detail = Detail.create_from_url('New API', url)
-    detail.save.should be_true
-    detail.from_url.should_not be_nil
+    fake_response = {:content => updated_data}
+    Detail.should_receive(:fetch_data).with(@detail.from_url).and_return(fake_response)
+
+    @detail.update_cached_content!
+    @detail.content.should eql(updated_data)
   end
 
   private
@@ -82,6 +85,21 @@ describe Detail do
       :content => '<data><to><test /></to></data>'
     }
     detail = Detail.new(defaults.merge(options))
+    detail.save
+    detail
+  end
+
+  def create_from_url(options = {})
+    url  = options[:url]  || 'http://www.example.org/some/api.xml'
+    data = options[:data] || '<data><to><test/></to></data>'
+    content_type = options[:content_type] || 'application/xml'
+
+    # mock up the HTTP response
+    http_resp = mock('HTTP response')
+    http_resp.should_receive(:content_type).and_return(content_type)
+    http_resp.should_receive(:body).and_return(data)
+    Net::HTTP.should_receive(:get_response).with(URI.parse(url)).and_return(http_resp)
+    detail = Detail.create_from_url('New API', url)
     detail.save
     detail
   end
