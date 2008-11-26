@@ -43,6 +43,7 @@ class Detail
 
   # TODO: Add a 'fetched_at' (or similarly named) timestamp.
   def update_cached_content!
+    return false unless from_url
     response = self.class.fetch_data(from_url)
     self.update_attributes(:content => response[:content])
   end

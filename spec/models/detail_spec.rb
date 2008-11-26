@@ -76,6 +76,11 @@ describe Detail do
     @detail.content.should eql(updated_data)
   end
 
+  it "should return false if there's no stored remote URL" do
+    @detail = create_detail  # no 'from_url' attribute
+    @detail.update_cached_content!.should be_false
+  end
+
   private
 
   def create_detail(options = {})
