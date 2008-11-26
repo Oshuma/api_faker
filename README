@@ -3,8 +3,12 @@ API Faker
 
 This app was born from my need to test web API responses without having to actually send
 a request through the tubes.  Just create a new Detail, select the content type, and
-give it some guts.  You'll then be able to RESTfully test the response and not have to
-worry about some lame API limit (*ahem* looks at Twitter).
+give it some guts.  You can also give it a remote URL and it will fetch the data and
+cache it locally.  The URL is saved as well, and there's an update link on the details
+page which will allow you to fetch (and cache) the latest data from the URL.
+
+You'll then be able to RESTfully test the response and not have to worry about some lame
+API limit (*ahem* looks at Twitter).
 
 Currently supports JSON, XML and YAML.
 
