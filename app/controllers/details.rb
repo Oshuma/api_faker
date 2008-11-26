@@ -50,6 +50,17 @@ class Details < Application
     end
   end
 
+  def update_cached(id)
+    @detail = Detail.get(id)
+    raise NotFound unless @detail
+    if @detail.update_cached_content!
+      response_message = {:notice => 'Cached content was updated.'}
+    else
+      response_message = {:error => 'Could not update cached content.'}
+    end
+    redirect resource(@detail), :message => response_message
+  end
+
   def destroy(id)
     @detail = Detail.get(id)
     raise NotFound unless @detail

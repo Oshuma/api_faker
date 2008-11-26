@@ -7,6 +7,13 @@
   <pre><code>$ curl <%= absolute_url(:detail, @detail, :format => @detail.content_type) %></code></pre>
 </p>
 
+<% if @detail.from_url %>
+  <p>
+    This API was pulled from a remote source,
+    <%= link_to 'Update It', resource(@detail, :update_cached) %>.
+  </p>
+<% end %>
+
 <p>
   <%= delete_button(@detail, nil, :class => 'delete-link') %>
 </p>

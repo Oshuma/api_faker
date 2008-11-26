@@ -140,3 +140,19 @@ describe "create detail from URL" do
     @response.should redirect_to(resource(Detail.first))
   end
 end
+
+describe "update a detail from stored URL" do
+  before(:each) do
+    Detail.all.destroy!
+    @fake_response = {:content => '<foo/>', :content_type => 'xml'}
+    @params = { :id => nil, :name => 'New API', :from_url => 'http://www.example.org/some/api.xml' }
+    Detail.should_receive(:fetch_data).twice.with(@params[:from_url]).and_return(@fake_response)
+    request(resource(:details), :method => "POST", :params => { :detail => @params })
+    @detail = Detail.first
+  end
+
+  it 'should be successful' do
+    @response = request(resource(@detail, :update_cached))
+    @response.should redirect_to(resource(@detail))
+  end
+end
