@@ -1,10 +1,13 @@
+count = (ENV['COUNT'] || 3).to_i
+
 namespace :data do
   desc 'Load all test data'
   task :all => [ :xml, :json, :yaml ]
 
   desc 'Load some test XML data'
   task :xml => [ :merb_env ] do
-    5.times do |i|
+    puts "Creating #{count} XML entries"
+    count.times do |i|
       test_xml = <<-EOXML
 <?xml version="1.0" encoding="UTF-8"?>
 <animals>
@@ -26,7 +29,8 @@ EOXML
 
   desc 'Load some test JSON data'
   task :json => [ :merb_env ] do
-    5.times do |i|
+    puts "Creating #{count} JSON entries"
+    count.times do |i|
       test_json = <<-EOJSON
 {
   "animals": {
@@ -55,7 +59,8 @@ EOJSON
 
   desc 'Load some test YAML data'
   task :yaml => [ :merb_env ] do
-    5.times do |i|
+    puts "Creating #{count} YAML entries"
+    count.times do |i|
       test_yaml = <<-OEYAML
 ---
 animals:
