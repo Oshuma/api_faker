@@ -44,7 +44,7 @@ class Details < Application
     @detail = Detail.get(id)
     raise NotFound unless @detail
     if @detail.update_attributes(detail)
-       redirect resource(@detail), :message => {:notice => "'#{@detail.name}' updated."}
+      redirect resource(@detail), :message => {:notice => "'#{@detail.name}' updated."}
     else
       display @detail, :edit
     end
