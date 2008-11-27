@@ -83,6 +83,16 @@ describe Detail do
     @detail.update_cached_content!.should be_false
   end
 
+  it 'should parse the JSON content type' do
+    @detail = create_from_url(:content_type => 'application/json')
+    @detail.content_type.should == 'json'
+  end
+
+  it 'should parse the YAML content type' do
+    @detail = create_from_url(:content_type => 'application/x-yaml')
+    @detail.content_type.should == 'yaml'
+  end
+
   private
 
   def create_detail(options = {})

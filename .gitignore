@@ -1,5 +1,6 @@
 .DS_Store
 config/database.yml
+coverage/
 log/*
 tmp/*
 schema/schema.rb

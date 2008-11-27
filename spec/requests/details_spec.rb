@@ -156,3 +156,15 @@ describe "update a detail from stored URL" do
     @response.should redirect_to(resource(@detail))
   end
 end
+
+describe "exceptions" do
+  it 'should throw a 404' do
+    @response = request('/details/not_a_real_page')
+    @response.status.should == 404
+  end
+
+  it 'should throw a 406' do
+    @response = request(resource(:details, :format => 'monkey'))
+    @response.status.should == 406
+  end
+end
