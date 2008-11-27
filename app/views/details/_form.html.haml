@@ -1,0 +1,20 @@
+= error_messages_for @detail
+
+- form_action = (request.params['action'] == 'edit' ? resource(@detail) : resource(:details))
+= form_for(@detail, :action => form_action, :id => 'detail-form') do
+  %p= text_field :name, :label => 'Name:', :size => '50'
+
+  %p{:id => 'from-url-container', :style => 'display: none;'}
+    = text_field :from_url, :label => 'URL:', :size => '50'
+
+  %p{:id => 'manual-content-container'}
+    ~ text_area :content, :rows => '30', :cols => '80'
+
+  %p{:id => 'content-type-container'}
+    = select :content_type, :label => 'Content Type:', :collection => @detail.content_types
+
+  %p
+    = submit('Save')
+    - cancel_link = (request.params['action'] == 'edit' ? resource(@detail) : url(:root))
+    \-
+    = link_to 'Cancel', cancel_link

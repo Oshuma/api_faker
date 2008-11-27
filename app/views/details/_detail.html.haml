@@ -1,0 +1,6 @@
+.detail{:id => "detail-#{detail.id}"}
+  %h3
+    = link_to(detail.name, resource(detail))
+    == (#{link_to 'Edit', resource(detail, :edit)})
+  %code
+    %pre= h(detail.content)

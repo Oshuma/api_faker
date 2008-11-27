@@ -1,0 +1,9 @@
+- if error_message?
+  .message#error-message
+    =h message[:error]
+    %a{:href => '', :class => 'message-close', :rel => '#error-message'}Close
+
+- if notice_message?
+  .message#notice-message
+    =h message[:notice]
+    %a{:href => '', :class => 'message-close', :rel => '#notice-message'}Close
