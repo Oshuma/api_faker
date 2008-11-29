@@ -1,0 +1,29 @@
+!!! Strict
+%html
+  %head
+    %title== API Faker / #{@page_title || request.params['action'].capitalize}
+    %meta{'http-equiv' => 'Content-Type', :content => 'text/html; charset=utf-8'}
+    = js_include_tag :jquery, :application, :bundle => true
+    = css_include_tag :master, :bundle => true
+
+  %body
+    #container
+      #header-container
+        = image_tag('logo.jpg')
+        %h2= @page_title || request.params['action'].capitalize
+        %hr
+
+      #left-container
+        = partial 'layout/menu'
+
+      #main-container
+        = partial 'layout/messages'
+        = catch_content :for_layout
+
+      #footer-container
+        %hr
+        .left
+        .right
+          == &copy; WTFPL #{link_to 'Dale Campbell', 'http://corrupt.save-state.net/'}
+          == - Powered by #{link_to 'Merb', 'http://merbivore.com/'}
+        %p &nbsp;
