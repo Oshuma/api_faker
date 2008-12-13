@@ -1,7 +1,6 @@
 require File.join( File.dirname(__FILE__), '..', "spec_helper" )
 
 describe Detail do
-
   it 'should require the name' do
     @detail = create_detail(:name => nil)
     @detail.errors[:name].should_not be_empty

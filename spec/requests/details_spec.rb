@@ -7,7 +7,7 @@ given "a detail exists" do
                  :content => '<test><data /></test>', :content_type => 'xml' }})
 end
 
-describe "resource(:details)" do
+describe "resource(:details)", :given => 'a detail exists' do
   describe "GET" do
 
     before(:each) do

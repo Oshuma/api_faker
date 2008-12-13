@@ -65,11 +65,13 @@ class Detail
   # Returns the 'basename' (so to speak) of the content +type+.
   def self.parse_content_type(type)
     case type
-    when 'application/json'
+    when %r[application/json]
       'json'
-    when 'application/xml'
+    when %r[application/xml]
       'xml'
-    when 'application/x-yaml'
+    when %r[text/xml]
+      'xml'
+    when %r[application/x-yaml]
       'yaml'
     end
   end
